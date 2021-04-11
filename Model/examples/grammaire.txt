@@ -1,0 +1,3 @@
+afficher;saisir;entrer;sauvegarder;affecter;purmeter;tant que;faire;fin tant que;pour;si;
+sinon;fin si;retourner;inclure;inférieur à;superieur à; superieur ou égal à;
+inférieur ou égal à;
