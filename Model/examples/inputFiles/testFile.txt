@@ -1,4 +1,40 @@
-ce           fichier      n'est     qu'un      simple exemple      pour           tester le                  fonctionement d'un          transducteur, on va 
-tester     en            premier         temp le          transducteur            effaceur de          des espace          et qui          remplace           chaque espace 
-       par             plus que deux          espaces          succisive  ou bien une            tabulation             par un seul espace
+ce
+
+
+
+
+fichier n'est     qu'un      simple exemple      pour           tester le
+
+
+
+
+
+fonctionement d'un          transducteur, on va 
+
+
+
+tester     en            premier         temp le    
+
+
+
+
+transducteur            effaceur de      
+
+
+
+
+des espace      et qui          remplace      
+
+chaque espace 
+
+
+
+par             plus que deux          espaces          succisive  ou bien une
+
+
+tabulation             par un seul espace
+
+
+
+
 fin 

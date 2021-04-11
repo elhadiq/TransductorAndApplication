@@ -35,10 +35,12 @@ class Luncher:
         with open("result.txt","w") as resultFile:
             resultFile.write(translation)
         #print(translation)
-import os
+        
+
+
 from transducteur import Transducteur
 ## voila un petit transducteur qui permet de d'effacer les occurences multiples de la lettre b
 trans1=Transducteur()
-trans1.readTransducteur("Model/examples/transductorsDir/spaceDeleter.txt")
+trans1.readTransducteur("Model/examples/transductorsDir/whitespace&NewLineDeleter.txt")
 ln=Luncher(trans1,"Model/examples/inputFiles/testFile.txt")
 ln.lunch()

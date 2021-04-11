@@ -1,8 +1,8 @@
-inputalphabet, ,#OTHER
-outputAlphabet, ,#OTHER
-states by default 0 is the initial state,0,1
-Transition: depart(int),input:output,destination(int)
-0:#OTHER:#OTHER:0
-0: : :1
-1:#OTHER:#OTHER:0
-1: ::1
+inputalphabet, ,#OTHER;
+outputAlphabet, ,#OTHER;
+states by default 0 is the initial state,0,1;
+Transition: depart(int),input:output,destination(int);
+0:#OTHER:#OTHER:0;
+0: : :1;
+1:#OTHER:#OTHER:0;
+1: ::1;

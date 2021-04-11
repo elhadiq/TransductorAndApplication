@@ -1,0 +1,13 @@
+inputalphabet, ,\n,#OTHER
+outputAlphabet, ,\n,#OTHER
+states by default 0 is the initial state,0,1,2
+Transition: depart(int),input:output,destination(int)
+0:#OTHER:#OTHER:0
+0: : :1
+0:\n:\n:2
+1:#OTHER:#OTHER:0
+1: ::1
+1:\n:\n:2
+2:\n::2
+2: ::1
+2:#OTHER:#OTHER:1
