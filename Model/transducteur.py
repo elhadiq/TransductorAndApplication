@@ -13,7 +13,3 @@ class Transducteur:
             for line in a_src[4:]:
                 split_line = line.split(':')
                 self.states[split_line[0]].affect([split_line[1]],[split_line[2]],[split_line[3]])
-
-trans1=Transducteur()
-trans1.readTransducteur("exampels/transducteur1.txt")
-a=1

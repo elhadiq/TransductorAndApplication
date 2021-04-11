@@ -11,7 +11,6 @@ class Luncher:
                 outputchar,currentStateNumber=currentState.succesors[charachter]
                 translation+=outputchar
                 currentState=self.transducteur.states[currentStateNumber]
-        print(translation)
-from Transducteur import trans1
-ln=Luncher(trans1,"exampels/testnaive.txt")
-ln.sequencer()
+        with open("result.txt","w") as resultFile:
+            resultFile.write(translation)
+        #print(translation)
