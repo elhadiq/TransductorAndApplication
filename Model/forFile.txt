@@ -1,0 +1,2 @@
+pour A dans L faire
+afficher "python is good"
