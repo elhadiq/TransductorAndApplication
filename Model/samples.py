@@ -1,6 +1,6 @@
 pourTrans={
     'ExtractionMode':'word',
-    'InputAlphabet': {'afficher','pour','dans','fair','#O','#E'},
+    'InputAlphabet': {'fin','afficher','pour','dans','fair','#O','#E'},
     #O : Other segnifie tout autre charactere non declaree 
     #E : except previous ie #E=all input alphabet except what montiend
     'OutputAlphabet':{'print(','for','in',':','#O'},
@@ -10,11 +10,21 @@ pourTrans={
         # de caracteres ou mots, alors on les mets dans un groupe porte un nom significatif et on declare une seule
         # transition au lieux d'une transition par etate
     'Transitions':{
+        #TODO add something to depile and empile when you want for reason of annotation
+        #TODO add groups to facilitate other transitions
         'initial':{
             '#O':('#O','initial',''),
             'pour':('for','forState',''),
-            'afficher':('print("','stringToPrint','")\n')
+            'afficher':('print("','stringToPrint','")'),
+            'fin':('','finStatement','')
         },
+        'finStatement':{
+            'pour':('','initial','/t'),
+            'si':('','initial','/t'),
+            'tant':('','initial',''),
+            'que':('','initial','/t')
+        }
+        ,
         'stringToPrint':{
             '#O':('#O','initial',''),
         },
@@ -59,9 +69,39 @@ quoteSolverDict={
             '#O':('#O','initial',''),
             '"':('','changerState','')
         },
+        #pour la pile :#UC: segnifie use and and conserve 
         'changerState':{
             '#O':('#O','changerState',''),
             ' ':('_','changerState',''),
             '"':('','initial','')
         }
 }}
+
+
+UnderScoreAndNewlineDeleter=test={
+    'ExtractionMode':'character',
+    'InputAlphabet': {'\t','\n','_','#O'},
+    #O : Other segnifie tout autre charactere non declaree 
+    #E : except previous ie #E=all input alphabet except what montiend
+    'OutputAlphabet':{'_','\n','#O'},
+    'States':{'initial','newline','underscored'},
+    'Transitions':{
+        'initial':{
+            # inAlphabet : (Outlphabet,OngoingState,PileElement)
+            '#O':('#O','initial',''),
+            '_':(' ','underscored',''),
+            '\n':('\n','newline','')
+            },
+        'newline':{
+            '#O':('#O','initial',''),
+            '_':('','underscored',''),
+            '\n':('','newline',''),
+
+        },
+        'underscored':{
+            '#O':('#O','initial',''),
+            '_':('','underscored',''),
+            '\n':('\n','newline','')
+        }
+    }
+}

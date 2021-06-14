@@ -1,3 +1,4 @@
+from os import EX_UNAVAILABLE
 from samples import *
 class Transducteur:
     def __repr__(self) -> str:
@@ -9,7 +10,7 @@ class Transducteur:
         self.states=dictionary["States"]
         self.transitions=dictionary["Transitions"]
         self.extactionMode=dictionary["ExtractionMode"]
-        self.pile=""
+        self.pile=[]
     
     @staticmethod
     def extractInpuSequence(textfile,modeExtraction="w"):
@@ -49,6 +50,7 @@ class Transducteur:
 
     def translate(self,entree):
         currentState='initial'
+        annotation=""
         translation=""
         for word in entree:
             if word in self.transitions[currentState]:
@@ -59,10 +61,24 @@ class Transducteur:
                     out=word
             else:
                 raise SyntaxError("la transition (%s,%s) n'existe pas "%(currentState,word)) 
-            translation+=empile+out if self.extactionMode=="character" else " "+out+self.pile
-            self.pile=empile
+            if self.extactionMode=="character":
+                 translation+=empile+out
+            else:
+                translation+=out+annotation+"".join(self.pile) if word=='\n' else out+" "+"".join(self.pile)
+                if empile=='\t':
+                    annotation+=empile
+                elif empile=='/t':
+                    annotation=annotation[:-1]
+                else:
+                    self.pile=self.pile[:-1]
+                    self.pile.append(empile)
         return translation
             
 if __name__=="__main__":     
     transExp=Transducteur("test",pourTrans)
-    print(transExp.translateFromFile("Model/forFile.txt",))
+    TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
+    tr1=transExp.translateFromFile("Model/forFile.txt")
+    translation=TransRefactor.translate(tr1)
+    print(translation)
+    with open("result.py","w") as f:
+        f.write(translation)

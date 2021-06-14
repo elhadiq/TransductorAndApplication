@@ -1,2 +1,13 @@
-pour A dans L faire
-afficher "python is good"
+pour A dans range(2) faire
+pour A dans range(2) faire
+pour A dans range(2) faire
+    afficher "python is good"
+    fin pour
+    afficher "bien"
+    fin pour
+    afficher "pop"
+    fin pour
+    afficher "kiki"
+print(A)
+afficher "bye bye"
+    
