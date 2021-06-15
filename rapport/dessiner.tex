@@ -1,0 +1,47 @@
+\documentclass[12pt,a4paper]{article}
+\include{packages}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+Pour tout ce qui suite le charactere * représente tout autre mot à déffirent des mot qui sont les étiquets des transitions partant d'état courant, par exemple' le symbole * pour l'etat 0
+est tout charctere w dans l'ensemble $\Sigma^* \setminus \{ 'pour'\}$ et $\varepsilon$ représente le mot vide.\\
+Et pour alleger la notation et si un empilement (resp dépiler ) aura lieu en va présiser le mot à empiler (resp dépiler) sinon en va présizer seulemt le couple (input:output) qui est en fait equivalent à (input:output:$\varepsilon$),
+et concernant le charactere : en générale c'est un séparateur entre l'input et l'output mais lorsqu'il serai présent comme étant input ou bien output, dans ce cas le séparateur sera changé par $\vert$, pour enlever l'ambiguité chez le lecteur.\\
+le charactere $\setminus$t représente la tabulation
+\vspace{2cm}
+\\
+\begin{tikzpicture}[->,node distance=4cm,auto]
+\tikzstyle [courant]=[vertex,fill=red!50]
+\node[initial,state,accepting] (0) {0};
+\node [state] [right of=0] (pour) {pour};
+\node [state] [right of=pour] (var) {var};
+\node [state] [below of=var] (dans) {dans};
+\node [state] [left of=dans] (list) {list};
+\node[initial,state,accepting] (1) {0};
+\node [state] [right of=0] (pour) {pour};
+\node [state] [right of=pour] (var) {var};
+\node [state] [right of=var] (allant de) {allant de};
+\node [state] [below of=allant de] (deb) {deb};
+\node [state] [below of=deb] (a) {à};
+\node [state] [left  of=a] (fin) {fin};
+\node [state] [left of=fin] (pas) {pas};
+\node [state] [left of=pas] (p) {p};
+\draw (0) edge [loop above] node {*:*} (0)
+edge[bend left,above] node{pour:for}(pour)
+(var)edge [bend left,above] node {dans:in}(dans)
+(dans)edge[bend left,above] node{*:*}(list)
+(list)edge[bend right,below] node{faire $\vert$ : $\vert \setminus t$} (0)
+(var)edge [bend left,above ] node {allant de:in range(}(allant de)
+(pour)edge[bend left,above] node {*:*}(var)
+(allant de)edge[bend left,above] node {*:*,}(deb)
+(deb)edge [bend left,above] node {à:,}(a)
+(a)edge[bend left,below ] node {*:*}(fin)
+(fin)edge [bend left,below] node {faire $\vert $  ):  $\vert$   $\setminus $t}(0)
+(fin)edge[bend left,below ]node {pas:,}(pas)
+(pas)edge[bend left,below ]node {*:*}(p)
+(p)edge [bend left,above] node {faire $\vert $  ):  $\vert$   $\setminus $t}(1)
+;
+\end{tikzpicture}
+\end{document}
