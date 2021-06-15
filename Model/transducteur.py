@@ -1,4 +1,3 @@
-from os import EX_UNAVAILABLE
 from samples import *
 class Transducteur:
     def __repr__(self) -> str:
@@ -24,24 +23,38 @@ class Transducteur:
             a=f.read()
             if modeExtraction=="character":
                 return a
-            #On utilse notre transducteur deja defini 
-            quoteSolverTrans=Transducteur("quoteSolverTrans",quoteSolverDict)
-            a=quoteSolverTrans.translate(a)
-            a=a.split("\n")
-            b=[]
-            for i in a:
-                #effacer les saut de ligne
-                if (i!=""):
-                    b.append(i)
-            b=[l.split(' ') for l in b]#devision par rapport aux espaces
-            for l in b:
-                for i in l:
-                    #supression des espacess
-                    if i!='':
-                        entree.append(i)
-                entree.append("\n")
+        return Transducteur.extractInpuSequenceFromChiane(a)
+
+    def translateFromFile(self,textfile,extactionMode=None):
+        if extactionMode is None:
+            extactionMode=self.extactionMode
+        entree=Transducteur.extractInpuSequence(textfile,extactionMode)
+        return self.translate(entree)
+    @staticmethod
+    def extractInpuSequenceFromChiane(chaine):
+        a=chaine
+        entree=[]
+         #On utilse notre transducteur deja defini 
+        quoteSolverTrans=Transducteur("quoteSolverTrans",quoteSolverDict)
+        a=quoteSolverTrans.translate(a)
+        a=a.split("\n")
+        b=[]
+        for i in a:
+            #effacer les saut de ligne
+            if (i!=""):
+                b.append(i)
+        b=[l.split(' ') for l in b]#devision par rapport aux espaces
+        for l in b:
+            for i in l:
+                #supression des espacess
+                if i!='':
+                    entree.append(i)
+            entree.append("\n")
         return entree
 
+    def translateFromString(self,chaine):
+        entree=Transducteur.extractInpuSequenceFromChiane(chaine)
+        return self.translate(entree)
     def translateFromFile(self,textfile,extactionMode=None):
         if extactionMode is None:
             extactionMode=self.extactionMode
@@ -75,10 +88,22 @@ class Transducteur:
         return translation
             
 if __name__=="__main__":     
+    inp="""
+    pour A dans range(2) faire
+    pour A dans range(2) faire
+    pour A dans range(2) faire
+        afficher "python is good"
+        fin pour
+        afficher "bien"
+        fin pour
+        afficher "pop"
+        fin pour
+        afficher "kiki"
+    print(A)
+    afficher "bye bye"""
+
     transExp=Transducteur("test",pourTrans)
     TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
-    tr1=transExp.translateFromFile("Model/forFile.txt")
+    tr1=transExp.translateFromString(inp)
     translation=TransRefactor.translate(tr1)
-    print(translation)
-    with open("result.py","w") as f:
-        f.write(translation)
+    print(tr1)
