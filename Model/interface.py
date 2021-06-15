@@ -4,10 +4,11 @@ from transducteur import *
 def Traduire():
     r=texte_input.get(1.0,END)
     transExp=Transducteur("kk",pourTrans)
+    TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
     resultat=transExp.translateFromString(r)
+    translation=TransRefactor.translateFromString(resultat)
     texte_output.delete('1.0', END)
-    texte_output.insert(INSERT,resultat+'\n')
-
+    texte_output.insert(INSERT,translation+'\n')
 
 #__________________________________INTERFACE GRAPHIQUE
 Mafenetre = Tk()
@@ -41,7 +42,3 @@ texte_output.pack(side=TOP,padx=2,pady=10,ipady=45,ipadx=40)
 
 Button(frame_bouton,text="Traduire",fg='navy',command=Traduire).pack(side=LEFT,padx=320,pady=0.5,ipady=20,ipadx=30)
 Mafenetre.mainloop()
-
-if __name__=="__main__":
-    transExp=Transducteur("test",pourTrans)
-    print(transExp.translateFromFile("Model/forFile.txt",))

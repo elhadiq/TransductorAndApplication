@@ -31,7 +31,9 @@ class Transducteur:
         entree=Transducteur.extractInpuSequence(textfile,extactionMode)
         return self.translate(entree)
     @staticmethod
-    def extractInpuSequenceFromChiane(chaine):
+    def extractInpuSequenceFromChiane(chaine,extactionMode="word"):
+        if extactionMode=="character":
+            return chaine
         a=chaine
         entree=[]
          #On utilse notre transducteur deja defini 
@@ -53,8 +55,9 @@ class Transducteur:
         return entree
 
     def translateFromString(self,chaine):
-        entree=Transducteur.extractInpuSequenceFromChiane(chaine)
+        entree=Transducteur.extractInpuSequenceFromChiane(chaine,self.extactionMode)
         return self.translate(entree)
+
     def translateFromFile(self,textfile,extactionMode=None):
         if extactionMode is None:
             extactionMode=self.extactionMode
@@ -89,18 +92,19 @@ class Transducteur:
             
 if __name__=="__main__":     
     inp="""
-    pour A dans range(2) faire
-    pour A dans range(2) faire
-    pour A dans range(2) faire
-        afficher "python is good"
-        fin pour
-        afficher "bien"
-        fin pour
-        afficher "pop"
-        fin pour
-        afficher "kiki"
-    print(A)
-    afficher "bye bye"""
+pour A dans range(2) faire
+pour A dans range(2) faire
+pour A dans range(2) faire
+    afficher "python is good"
+    fin pour
+    afficher "bien"
+    fin pour
+    afficher "pop"
+    fin pour
+    afficher "kiki"
+print(A)
+afficher "bye bye"
+    """
 
     transExp=Transducteur("test",pourTrans)
     TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
