@@ -3,8 +3,9 @@ from transducteur import *
 
 def Traduire():
     r=texte_input.get(1.0,END)
-    transExp=Transducteur("kk",pourTrans)
-    TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
+    transExp,TransRefactor=None,None
+    transExp=Transducteur("kk",pourTrans) if transExp==None else transExp
+    TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter) if TransRefactor==None else TransRefactor
     resultat=transExp.translateFromString(r)
     translation=TransRefactor.translateFromString(resultat)
     texte_output.delete('1.0', END)
@@ -12,7 +13,7 @@ def Traduire():
 
 #__________________________________INTERFACE GRAPHIQUE
 Mafenetre = Tk()
-Mafenetre.title("Analyse lexicale & syntaxique d'un algorithme")
+Mafenetre.title("Traduction Notation Algorithmique en Langague Python")
 
 frame_entree= Frame(Mafenetre,borderwidth=2,relief=GROOVE,width=800,height=200)
 frame_entree.pack_propagate(False)
@@ -40,5 +41,5 @@ texte_output.configure(yscrollcommand=vsb.set)
 texte_output.pack(side=TOP,padx=2,pady=10,ipady=45,ipadx=40)
 
 
-Button(frame_bouton,text="Traduire",fg='navy',command=Traduire).pack(side=LEFT,padx=320,pady=0.5,ipady=20,ipadx=30)
+Button(frame_bouton,text="Traduire vers Python",fg='navy',command=Traduire).pack(side=LEFT,padx=320,pady=0.5,ipady=20,ipadx=30)
 Mafenetre.mainloop()
