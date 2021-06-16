@@ -92,14 +92,14 @@ class Transducteur:
                
 if __name__=="__main__":     
     inp="""
-pour A allant de 1 à 12 pas 2 faire
+pour A allant de 1 jusqu'à 12 pas 2 faire
 pour A dans range(2) faire
 pour A dans range(2) faire
-    afficher "python is good" fin pour
-    afficher "pour A dans L faire" fin pour
-    afficher "pop" fin pour
-    afficher "kiki"
-print(A)
+afficher "python is good" fin pour
+afficher "pour A dans L faire" fin pour
+afficher "pop" fin pour
+afficher "kiki"
+print('bb')
 afficher "bye bye"
     """
 

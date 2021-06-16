@@ -41,6 +41,7 @@ pourTrans={
         },
         'deb':{
             "à":(',','Jusqua',''),
+            "jusqu'à":(',','Jusqua','')
         },
         'Jusqua':{
             "#O":('#O','dernier','')
@@ -100,7 +101,7 @@ quoteSolverDict={
 }}
 
 
-UnderScoreAndNewlineDeleter=test={
+UnderScoreAndNewlineDeleter={
     'ExtractionMode':'character',
     'InputAlphabet': {'\t','\n','_','#O'},
     #O : Other segnifie tout autre charactere non declaree 
