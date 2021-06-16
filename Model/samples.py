@@ -14,7 +14,7 @@ pourTrans={
         #TODO add groups to facilitate other transitions
         'initial':{
             '#O':('#O','initial',''),
-            'pour':('for','forState',''),
+            'pour':('for','pourState',''),
             'afficher':('print("','stringToPrint','")'),
             'fin':('','finStatement','')
         },
@@ -28,11 +28,33 @@ pourTrans={
         'stringToPrint':{
             '#O':('#O','initial',''),
         },
-        'forState':{
+        'pourState':{
             '#O':('#O','varState','')
         },
         'varState':{
-            'dans':('in','inState','')
+            'dans':('in','inState',''),
+            'allant':('','varState',''),
+            'de':('in range(','allantDe','')
+        },
+        'allantDe':{
+            "#O":('#O','deb','')
+        },
+        'deb':{
+            "à":(',','Jusqua',''),
+        },
+        'Jusqua':{
+            "#O":('#O','dernier','')
+
+        },  
+        'dernier':{
+            'faire':('):','initial','\t'),
+            'pas':(',','pasState','')
+        },
+        'pasState':{
+            "#O":('#O','lePas','')
+        },
+        'lePas':{
+            'faire':('):','initial','\t'),
         },
         'inState':{
             '#O':('#O','listState','')

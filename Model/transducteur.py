@@ -89,18 +89,15 @@ class Transducteur:
                     self.pile=self.pile[:-1]
                     self.pile.append(empile)
         return translation
-            
+               
 if __name__=="__main__":     
     inp="""
+pour A allant de 1 à 12 pas 2 faire
 pour A dans range(2) faire
 pour A dans range(2) faire
-pour A dans range(2) faire
-    afficher "python is good"
-    fin pour
-    afficher "bien"
-    fin pour
-    afficher "pop"
-    fin pour
+    afficher "python is good" fin pour
+    afficher "pour A dans L faire" fin pour
+    afficher "pop" fin pour
     afficher "kiki"
 print(A)
 afficher "bye bye"
@@ -109,5 +106,5 @@ afficher "bye bye"
     transExp=Transducteur("test",pourTrans)
     TransRefactor=Transducteur("Refactor",UnderScoreAndNewlineDeleter)
     tr1=transExp.translateFromString(inp)
-    translation=TransRefactor.translate(tr1)
+    translation=TransRefactor.translateFromString(tr1)
     print(tr1)
